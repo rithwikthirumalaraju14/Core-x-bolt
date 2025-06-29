@@ -53,9 +53,9 @@ const ModernProductCard = ({
   handleWishlist, handleAddToCart, handleQuickView
 }: ModernProductCardProps) => (
   <div
-    className={`group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 ${viewMode === 'list' ? 'flex flex-row' : ''}`}
+    className={`group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 animate-fade-in ${viewMode === 'list' ? 'flex flex-row' : ''}`}
   >
-    <div className={`relative ${viewMode === 'list' ? 'w-48' : 'aspect-[3/4] w-full'} overflow-hidden rounded-t-2xl ${viewMode === 'list' ? 'rounded-l-2xl rounded-tr-none' : ''}`}>
+    <div className={`relative ${viewMode === 'list' ? 'w-48' : 'aspect-[3/4] w-full'} overflow-hidden ${viewMode === 'list' ? 'rounded-l-2xl' : 'rounded-t-2xl'}`}>
       <img
         src={product.image}
         alt={product.name}
@@ -121,11 +121,13 @@ const ModernProductCard = ({
       </div>
 
       {/* Product name with shimmer effect */}
-      <TextShimmer
-        text={product.name}
-        className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-gray-800"
-        duration={2000}
-      />
+      <div className="mb-3">
+        <TextShimmer
+          text={product.name}
+          className="text-lg font-semibold text-gray-900 group-hover:text-gray-800"
+          duration={2000}
+        />
+      </div>
 
       {viewMode === 'list' && (
         <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>

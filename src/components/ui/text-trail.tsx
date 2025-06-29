@@ -15,6 +15,7 @@ export const TextTrail: React.FC<TextTrailProps> = ({
   duration = 50
 }) => {
   const [animatedText, setAnimatedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -27,6 +28,9 @@ export const TextTrail: React.FC<TextTrailProps> = ({
           setAnimatedText(text.slice(0, currentIndex + 1));
           currentIndex++;
           setTimeout(addNextChar, duration);
+        } else {
+          // Hide cursor after animation completes
+          setTimeout(() => setShowCursor(false), 1000);
         }
       };
       
@@ -43,7 +47,7 @@ export const TextTrail: React.FC<TextTrailProps> = ({
   return (
     <span className={cn("inline-block", className)}>
       {animatedText}
-      <span className="animate-pulse">|</span>
+      {showCursor && <span className="animate-pulse ml-1">|</span>}
     </span>
   );
 };

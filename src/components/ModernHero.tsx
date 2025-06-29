@@ -32,7 +32,7 @@ const ModernHero = () => {
       <div
         className="absolute inset-0 transition-transform duration-75"
         style={{ 
-          transform: `translateY(${scrollY * 0.5}px) translateX(${mousePosition.x * 0.01}px)` 
+          transform: `translateY(${scrollY * 0.5}px) translateX(${mousePosition.x * 0.005}px)` 
         }}
       >
         <div className="relative w-full h-[120%]">
@@ -61,8 +61,8 @@ const ModernHero = () => {
           <div className="mb-8">
             <TextPressure
               text="CORE X"
-              className="text-6xl md:text-8xl lg:text-9xl font-bebas tracking-wider text-white"
-              pressureIntensity={2}
+              className="text-6xl md:text-8xl lg:text-9xl font-bebas tracking-wider text-white drop-shadow-2xl"
+              pressureIntensity={1.5}
             />
           </div>
 
@@ -86,7 +86,7 @@ const ModernHero = () => {
           </div>
 
           {/* CTA Buttons with Modern Design */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '2s' }}>
             <Button
               size="lg"
               className="group relative overflow-hidden bg-gradient-to-r from-corex-red to-corex-blue hover:from-corex-blue hover:to-corex-red px-8 py-4 text-lg font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
@@ -129,7 +129,7 @@ const ModernHero = () => {
         </div>
 
         {/* Modern Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in" style={{ animationDelay: '3s' }}>
           <div className="flex flex-col items-center space-y-2 animate-bounce">
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>

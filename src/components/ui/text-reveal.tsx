@@ -12,7 +12,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({
   text,
   className,
   delay = 0,
-  duration = 1000
+  duration = 800
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

@@ -78,6 +78,13 @@ const ModernAboutSection = () => {
     }
   ];
 
+  const stats = [
+    { value: counters.athletes, label: "Athletes Trust Us", color: "text-corex-red", suffix: "+" },
+    { value: counters.countries, label: "Countries Worldwide", color: "text-corex-blue", suffix: "" },
+    { value: counters.years, label: "Years of Excellence", color: "text-corex-green", suffix: "" },
+    { value: counters.products, label: "Performance Products", color: "text-corex-orange", suffix: "+" }
+  ];
+
   return (
     <section id="about" ref={sectionRef} className="py-20 px-6 md:px-12 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
       {/* Background Pattern */}
@@ -102,21 +109,15 @@ const ModernAboutSection = () => {
 
         {/* Stats Section with Modern Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {[
-            { value: counters.athletes, label: "Athletes Trust Us", color: "corex-red", suffix: "+" },
-            { value: counters.countries, label: "Countries Worldwide", color: "corex-blue", suffix: "" },
-            { value: counters.years, label: "Years of Excellence", color: "corex-green", suffix: "" },
-            { value: counters.products, label: "Performance Products", color: "corex-orange", suffix: "+" }
-          ].map((stat, index) => (
+          {stats.map((stat, index) => (
             <div 
               key={index}
-              className="relative group"
+              className="relative group animate-fade-in"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-200/50">
-                <div className={`text-4xl md:text-5xl font-bold text-${stat.color} mb-2 relative`}>
+                <div className={`text-4xl md:text-5xl font-bold ${stat.color} mb-2 relative`}>
                   {stat.value.toLocaleString()}{stat.suffix}
-                  <div className={`absolute inset-0 bg-gradient-to-r from-${stat.color}/20 to-transparent rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 </div>
                 <div className="text-gray-600 font-medium text-sm">{stat.label}</div>
               </div>
@@ -129,7 +130,7 @@ const ModernAboutSection = () => {
           {features.map((feature, index) => (
             <div 
               key={feature.title}
-              className="group relative"
+              className="group relative animate-fade-in"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200/50 overflow-hidden">
@@ -157,7 +158,7 @@ const ModernAboutSection = () => {
 
         {/* Story Section with Modern Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 animate-slide-in-left">
             <TextReveal
               text="The Core X Story"
               className="text-4xl font-bold text-gray-900"
@@ -188,7 +189,7 @@ const ModernAboutSection = () => {
             </div>
           </div>
           
-          <div className="relative group">
+          <div className="relative group animate-slide-in-right">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"

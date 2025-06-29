@@ -14,6 +14,7 @@ export const TextPressure: React.FC<TextPressureProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -26,17 +27,28 @@ export const TextPressure: React.FC<TextPressureProps> = ({
       }
     };
 
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
     const container = containerRef.current;
     if (container) {
       container.addEventListener('mousemove', handleMouseMove);
-      return () => container.removeEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseenter', handleMouseEnter);
+      container.addEventListener('mouseleave', handleMouseLeave);
+      
+      return () => {
+        container.removeEventListener('mousemove', handleMouseMove);
+        container.removeEventListener('mouseenter', handleMouseEnter);
+        container.removeEventListener('mouseleave', handleMouseLeave);
+      };
     }
   }, []);
 
-  const getCharacterStyle = (index: number, char: string) => {
-    if (!containerRef.current) return {};
+  const getCharacterStyle = (index: number) => {
+    if (!containerRef.current || !isHovering) return {};
 
-    const charElement = containerRef.current.children[index] as HTMLElement;
+    const charElements = containerRef.current.children;
+    const charElement = charElements[index] as HTMLElement;
     if (!charElement) return {};
 
     const rect = charElement.getBoundingClientRect();
@@ -54,22 +66,22 @@ export const TextPressure: React.FC<TextPressureProps> = ({
     const normalizedDistance = Math.min(distance / maxDistance, 1);
     const pressure = (1 - normalizedDistance) * pressureIntensity;
     
-    const scale = 1 + pressure * 0.5;
-    const skew = pressure * 10;
+    const scale = 1 + pressure * 0.3;
+    const skew = pressure * 5;
     
     return {
       transform: `scale(${scale}) skew(${skew}deg)`,
-      transition: 'transform 0.1s ease-out'
+      transition: 'transform 0.2s ease-out'
     };
   };
 
   return (
-    <div ref={containerRef} className={cn("inline-flex", className)}>
+    <div ref={containerRef} className={cn("inline-flex cursor-default", className)}>
       {text.split('').map((char, index) => (
         <span
           key={index}
           className="inline-block origin-center"
-          style={getCharacterStyle(index, char)}
+          style={getCharacterStyle(index)}
         >
           {char === ' ' ? '\u00A0' : char}
         </span>

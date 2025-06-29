@@ -18,6 +18,10 @@ export const FloatingElements: React.FC<FloatingElementsProps> = ({ className })
       {/* Floating lines */}
       <div className="absolute top-32 right-40 w-16 h-0.5 bg-gradient-to-r from-corex-red/20 to-transparent animate-pulse" />
       <div className="absolute bottom-32 left-40 w-20 h-0.5 bg-gradient-to-r from-corex-blue/20 to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
+      
+      {/* Additional decorative elements */}
+      <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-corex-green/30 rounded-full animate-bounce-slow" />
+      <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-corex-orange/30 rounded-full animate-bounce-slow" style={{ animationDelay: '2s' }} />
     </div>
   );
 };
