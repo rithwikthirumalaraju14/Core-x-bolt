@@ -1,8 +1,7 @@
-
 import AdvancedNavbar from '@/components/AdvancedNavbar';
-import AdvancedHero from '@/components/AdvancedHero';
+import ModernHero from '@/components/ModernHero';
 import AdvancedShopSection from '@/components/AdvancedShopSection';
-import AboutSection from '@/components/AboutSection';
+import ModernAboutSection from '@/components/ModernAboutSection';
 import AthletesSection from '@/components/AthletesSection';
 import JoinSection from '@/components/JoinSection';
 import ContactSection from '@/components/ContactSection';
@@ -14,9 +13,9 @@ const Index = () => {
     <>
       <div className="min-h-screen">
         <AdvancedNavbar />
-        <AdvancedHero />
+        <ModernHero />
         <AdvancedShopSection />
-        <AboutSection />
+        <ModernAboutSection />
         <AthletesSection />
         <JoinSection />
         <ContactSection />

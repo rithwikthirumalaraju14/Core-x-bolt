@@ -7,9 +7,9 @@ import ProductQuickView from './ProductQuickView';
 import { useProfile } from "@/hooks/useProfile";
 import { useWishlist } from "@/hooks/useWishlist";
 import ShopFilters from "./ShopFilters";
-import ShopGrid from "./ShopGrid";
 import { categories, sortOptions } from '@/constants/shopConstants';
 import { useToast } from '@/hooks/use-toast';
+import ModernProductCard from './ModernProductCard';
 
 interface Product {
   id: string;
@@ -56,7 +56,7 @@ const allProducts: Product[] = [
     category: 'tees',
     badge: 'SALE',
     featured: true,
-    video: 'https://www.youtube.com/embed/xp2qjshr-r4', // sample (pretend promo/fit video)
+    video: 'https://www.youtube.com/embed/xp2qjshr-r4',
     fitGuide: {
       fit: "Athletic fit. True to size.",
       material: "92% Polyester / 8% Spandex",
@@ -203,20 +203,22 @@ const AdvancedShopSection = () => {
     }
   };
 
-  // Persist product names to window for chatbot context
   useEffect(() => {
     (window as any).__ADVANCED_PRODUCTS_LIST__ = allProducts.map((x) => x.name);
   }, []);
 
   return (
-    <section id="shop" className="py-20 px-6 md:px-12">
+    <section id="shop" className="py-20 px-6 md:px-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl mb-6 font-bebas">Shop Core X</h2>
+          <h2 className="text-5xl md:text-6xl mb-6 font-bebas bg-gradient-to-r from-gray-900 via-corex-red to-gray-900 bg-clip-text text-transparent">
+            Shop Core X
+          </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover our complete collection of performance athletic wear designed for champions
           </p>
         </div>
+        
         <ShopFilters
           filterCategory={filterCategory}
           setFilterCategory={setFilterCategory}
@@ -229,15 +231,24 @@ const AdvancedShopSection = () => {
           total={allProducts.length}
           available={filteredProducts.length}
         />
-        <ShopGrid
-          products={filteredProducts}
-          viewMode={viewMode}
-          isWishlisted={isWishlisted}
-          wishlistLoading={wishlistLoading}
-          handleWishlist={handleWishlist}
-          handleAddToCart={handleAddToCart}
-          handleQuickView={handleQuickView}
-        />
+        
+        <div className={`grid gap-8 ${viewMode === 'grid'
+          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+          : 'grid-cols-1'
+          }`}>
+          {filteredProducts.map((product, index) => (
+            <ModernProductCard
+              key={product.id}
+              product={product}
+              viewMode={viewMode}
+              isWishlisted={isWishlisted(product.id)}
+              wishlistLoading={wishlistLoading}
+              handleWishlist={handleWishlist}
+              handleAddToCart={handleAddToCart}
+              handleQuickView={handleQuickView}
+            />
+          ))}
+        </div>
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-12 animate-fade-in">

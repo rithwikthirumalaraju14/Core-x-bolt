@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -118,6 +117,18 @@ export default {
 				'gradient': {
 					'0%, 100%': { 'background-position': '0% 50%' },
 					'50%': { 'background-position': '100% 50%' }
+				},
+				'shimmer': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'text-reveal': {
+					'0%': { transform: 'translateY(100%)', opacity: '0' },
+					'100%': { transform: 'translateY(0%)', opacity: '1' }
+				},
+				'bounce-slow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
@@ -129,7 +140,10 @@ export default {
 				'scale-in': 'scale-in 0.4s ease-out',
 				'float': 'float 3s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
-				'gradient': 'gradient 3s ease infinite'
+				'gradient': 'gradient 3s ease infinite',
+				'shimmer': 'shimmer 2s ease-in-out infinite',
+				'text-reveal': 'text-reveal 0.8s ease-out',
+				'bounce-slow': 'bounce-slow 2s ease-in-out infinite'
 			},
 			backgroundSize: {
 				'300%': '300%'
