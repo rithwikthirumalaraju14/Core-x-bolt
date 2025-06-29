@@ -57,12 +57,13 @@ const ModernHero = () => {
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center text-white px-6">
         <div className="text-center max-w-6xl">
-          {/* Animated Logo with Pressure Effect */}
+          {/* Animated Logo with TextTrail Effect */}
           <div className="mb-8">
-            <TextPressure
+            <TextTrail
               text="CORE X"
               className="text-6xl md:text-8xl lg:text-9xl font-bebas tracking-wider text-white drop-shadow-2xl"
-              pressureIntensity={1.5}
+              delay={500}
+              duration={150}
             />
           </div>
 
@@ -71,7 +72,7 @@ const ModernHero = () => {
             <TextTrail
               text="Gear That Moves With You."
               className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
-              delay={1000}
+              delay={2000}
               duration={100}
             />
           </div>
@@ -86,7 +87,7 @@ const ModernHero = () => {
           </div>
 
           {/* CTA Buttons with Modern Design */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '2s' }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '4s' }}>
             <Button
               size="lg"
               className="group relative overflow-hidden bg-gradient-to-r from-corex-red to-corex-blue hover:from-corex-blue hover:to-corex-red px-8 py-4 text-lg font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
@@ -129,7 +130,7 @@ const ModernHero = () => {
         </div>
 
         {/* Modern Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in" style={{ animationDelay: '3s' }}>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in" style={{ animationDelay: '5s' }}>
           <div className="flex flex-col items-center space-y-2 animate-bounce">
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
