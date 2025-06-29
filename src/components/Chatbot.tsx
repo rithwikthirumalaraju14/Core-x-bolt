@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Dumbbell } from "lucide-react";
+import { Dumbbell, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import ChatWindow from "./chatbot/ChatWindow";
@@ -130,17 +130,63 @@ const Chatbot = () => {
     <>
       <div className="fixed bottom-8 right-8 z-50">
         {!open && (
-          <Button
-            className="rounded-full p-3 bg-gradient-to-br from-corex-red via-corex-blue to-corex-green shadow-xl hover:scale-110 hover:shadow-2xl transition-transform duration-300 text-white animate-pulse"
-            style={{
-              boxShadow: "0 6px 32px 0 rgba(0,0,0,0.13), 0 1.5px 4px 0 rgba(0,0,0,0.10)"
-            }}
-            onClick={() => setOpen(true)}
-            aria-label="Open gym chatbot"
-            size="icon"
-          >
-            <Dumbbell className="w-8 h-8 text-white drop-shadow" />
-          </Button>
+          <div className="relative group">
+            {/* Animated background rings */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-corex-red via-corex-blue to-corex-green opacity-75 animate-spin" style={{ animationDuration: '3s' }}></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-corex-green via-corex-orange to-corex-purple opacity-50 animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }}></div>
+            
+            {/* Pulsing outer ring */}
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-corex-red/30 to-corex-blue/30 animate-pulse"></div>
+            
+            {/* Floating particles */}
+            <div className="absolute -inset-4 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full animate-float opacity-60"
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${20 + (i % 2) * 60}%`,
+                    animationDelay: `${i * 0.5}s`,
+                    animationDuration: `${2 + i * 0.3}s`
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Main button */}
+            <Button
+              className="relative w-16 h-16 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 hover:from-corex-red hover:via-corex-blue hover:to-corex-green shadow-2xl hover:shadow-corex-red/50 transition-all duration-500 transform hover:scale-110 active:scale-95 border-2 border-white/20 backdrop-blur-sm group-hover:border-white/40"
+              onClick={() => setOpen(true)}
+              aria-label="Open AI fitness assistant"
+              size="icon"
+            >
+              {/* Inner glow effect */}
+              <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Icon with morphing animation */}
+              <div className="relative z-10 transition-transform duration-500 group-hover:rotate-12">
+                <MessageCircle className="w-8 h-8 text-white drop-shadow-lg group-hover:hidden transition-opacity duration-300" />
+                <Sparkles className="w-8 h-8 text-white drop-shadow-lg hidden group-hover:block transition-opacity duration-300" />
+              </div>
+
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+            </Button>
+
+            {/* Tooltip */}
+            <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
+              <div className="bg-black/90 text-white text-xs px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 whitespace-nowrap">
+                Ask me anything about Core X!
+                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+              </div>
+            </div>
+
+            {/* Status indicator */}
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg animate-pulse">
+              <div className="absolute inset-0.5 bg-green-300 rounded-full animate-ping"></div>
+            </div>
+          </div>
         )}
       </div>
       {open && (
